@@ -1,0 +1,42 @@
+version: '3'
+services:
+
+  ghost:
+    image: ghost:latest
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+    environment:
+      url: ${URL}
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: ${DB_PASS}
+      database__connection__database: ghost
+    volumes:
+      - ./ghost/ghost_content:/var/lib/ghost/content
+
+  db:
+    image: mysql:5.7
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./ghost/ghost_mysql:/var/lib/mysql
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    depends_on:
+      - ghost
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/letsencrypt/:/etc/letsencrypt/
+      - ./nginx/html/:/usr/share/nginx/html/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
