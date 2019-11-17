@@ -4,6 +4,8 @@ services:
   ghost:
     image: ghost:latest
     restart: always
+    ports:
+      - "2368:2368"
     env_file:
       - .env
     depends_on:
@@ -36,6 +38,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8080:8080"
     volumes:
       - ./nginx/letsencrypt/:/etc/letsencrypt/
       - ./nginx/html/:/usr/share/nginx/html/
