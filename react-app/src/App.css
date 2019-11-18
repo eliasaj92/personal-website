@@ -20,3 +20,13 @@
 .App-link {
   color: #09d3ac;
 }
+
+a.nav-link{
+  text-decoration: none;
+  color: black;
+}
+
+a.chosen-class{
+  text-decoration: underline;
+  text-decoration-color: red;;
+}
