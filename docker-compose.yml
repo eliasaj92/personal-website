@@ -1,6 +1,18 @@
 version: '3'
 services:
 
+  flask:
+    image: python:3.8-alpine
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app/api
+      - ./react-app:/app/react-app
+    command: sh -c "apk add binutils libc-dev && cd app/api && pip install -r requirements.txt && gunicorn --bind 0.0.0.0:5000 wsgi"
+
   ghost:
     image: ghost:latest
     restart: always
@@ -35,6 +47,7 @@ services:
     restart: always
     depends_on:
       - ghost
+      - flask
     ports:
       - "80:80"
       - "443:443"
