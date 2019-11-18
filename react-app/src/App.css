@@ -21,12 +21,40 @@
   color: #09d3ac;
 }
 
+#header{
+  padding-top: 5px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  height: 30px;
+  position: fixed;
+  top: 0;
+}
+
 a.nav-link{
   text-decoration: none;
   color: black;
+  margin-left: 20px;
 }
 
 a.chosen-class{
   text-decoration: underline;
-  text-decoration-color: red;;
+  text-decoration-color: red;
+}
+
+img.contact-image{
+  height: 20px;
+}
+
+a.contact-info{
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+#footer{
+  position: fixed;
+  top: calc(100vh - 30px);
+  height: 30px;
+  border-top: 1px solid black;
+  width: 100%;
+  padding-top: 5px;
 }

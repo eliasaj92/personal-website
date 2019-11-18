@@ -10,10 +10,6 @@ def send_js(path):
 def favicon():
   return app.send_static_file('favicon.ico')
 
-@app.route("/logo192.png")
-def logo192():
-  return app.send_static_file('logo192.png')
-
 @app.route("/")
 def hello():
   return app.send_static_file('index.html')
